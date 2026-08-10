@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Mentora | Student Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="student.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENTORA STUDENT APP
+         ===================================================== -->
+
+    <div class="app-container">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="top-header">
+
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    M
+                </div>
+
+                <span class="brand-name">
+                    MENTORA
+                </span>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <button
+                    class="notification-btn"
+                    id="notificationBtn"
+                    title="Notifications">
+
+                    🔔
+
+                </button>
+
+
+                <!-- STUDENT PROFILE BUTTON -->
+
+                <button
+                    class="student-profile-btn"
+                    id="profileBtn"
+                    title="My Profile">
+
+                    SP
+
+                </button>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 WELCOME SECTION
+                 ================================================= -->
+
+            <section class="welcome-section">
+
+                <p class="welcome-small">
+                    STUDENT DASHBOARD
+                </p>
+
+
+                <h1>
+                    Welcome, Shambhavi 👋
+                </h1>
+
+
+                <p class="welcome-text">
+
+                    Manage your faculty appointments and connect
+                    with your mentors easily.
+
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 THREE MAIN OPTIONS
+                 ================================================= -->
+
+            <section class="main-options">
+
+
+                <!-- ================= MY APPOINTMENTS ================= -->
+
+                <button
+                    class="main-option-card"
+                    id="myAppointmentsOption">
+
+
+                    <div
+                        class="option-icon appointment-icon">
+
+                        📅
+
+                    </div>
+
+
+                    <div class="option-content">
+
+                        <h2>
+                            My Appointments
+                        </h2>
+
+
+                        <p>
+
+                            View all your booked and requested
+                            faculty appointments.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="option-arrow">
+                        →
+                    </div>
+
+
+                </button>
+
+
+
+                <!-- ================= BOOK APPOINTMENT ================= -->
+
+                <button
+                    class="main-option-card"
+                    id="bookAppointmentOption">
+
+
+                    <div
+                        class="option-icon book-icon">
+
+                        📝
+
+                    </div>
+
+
+                    <div class="option-content">
+
+                        <h2>
+                            Book Appointment
+                        </h2>
+
+
+                        <p>
+
+                            Schedule an appointment with your
+                            preferred faculty member.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="option-arrow">
+                        →
+                    </div>
+
+
+                </button>
+
+
+
+                <!-- ================= FIND FACULTY ================= -->
+
+                <button
+                    class="main-option-card"
+                    id="findFacultyOption">
+
+
+                    <div
+                        class="option-icon faculty-icon">
+
+                        🔍
+
+                    </div>
+
+
+                    <div class="option-content">
+
+                        <h2>
+                            Find Faculty
+                        </h2>
+
+
+                        <p>
+
+                            Search faculty by name, department,
+                            subject or short name.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="option-arrow">
+                        →
+                    </div>
+
+
+                </button>
+
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 MY APPOINTMENTS SECTION
+                 ===================================================== -->
+
+            <section
+                class="page-section"
+                id="appointmentsSection">
+
+
+                <div class="page-header">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            APPOINTMENTS
+                        </p>
+
+
+                        <h2>
+                            My Appointments
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="back-button"
+                        id="appointmentsBackBtn">
+
+                        ← Back
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- APPOINTMENT FILTERS -->
+
+                <div class="appointment-filters">
+
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="confirmed">
+
+                        Confirmed
+
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="pending">
+
+                        Pending
+
+                    </button>
+
+
+                    <button
+                        class="filter-btn"
+                        data-filter="completed">
+
+                        Completed
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- APPOINTMENT LIST -->
+
+                <div
+                    class="appointments-list"
+                    id="appointmentsList">
+
+
+                    <!-- ================= APPOINTMENT 1 ================= -->
+
+                    <article
+                        class="appointment-card"
+                        data-status="confirmed">
+
+
+                        <div class="appointment-card-top">
+
+
+                            <div
+                                class="faculty-small-avatar">
+
+                                AS
+
+                            </div>
+
+
+                            <div
+                                class="appointment-faculty-info">
+
+
+                                <h3>
+                                    Dr. Ananya Sharma
+                                </h3>
+
+
+                                <p>
+
+                                    Computer Science &
+                                    Engineering
+
+                                </p>
+
+
+                            </div>
+
+
+                            <span
+                                class="appointment-status confirmed">
+
+                                Confirmed
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-details">
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    📅
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Date
+                                    </small>
+
+
+                                    <strong>
+                                        12 August 2026
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    🕐
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Time
+                                    </small>
+
+
+                                    <strong>
+                                        11:30 AM – 12:00 PM
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    📍
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Mode
+                                    </small>
+
+
+                                    <strong>
+                                        Room 204 / Online
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-purpose">
+
+
+                            <span>
+                                Purpose
+                            </span>
+
+
+                            <p>
+                                Discussion about project guidance
+                            </p>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-actions">
+
+
+                            <button
+                                class="secondary-btn"
+                                data-action="view">
+
+                                View Details
+
+                            </button>
+
+
+                            <button
+                                class="cancel-btn"
+                                data-action="cancel">
+
+                                Cancel
+
+                            </button>
+
+
+                        </div>
+
+
+                    </article>
+
+
+
+                    <!-- ================= APPOINTMENT 2 ================= -->
+
+                    <article
+                        class="appointment-card"
+                        data-status="pending">
+
+
+                        <div class="appointment-card-top">
+
+
+                            <div
+                                class="faculty-small-avatar blue">
+
+                                VM
+
+                            </div>
+
+
+                            <div
+                                class="appointment-faculty-info">
+
+
+                                <h3>
+                                    Prof. Vikram Mehta
+                                </h3>
+
+
+                                <p>
+                                    Artificial Intelligence
+                                </p>
+
+
+                            </div>
+
+
+                            <span
+                                class="appointment-status pending">
+
+                                Pending
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-details">
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    📅
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Date
+                                    </small>
+
+
+                                    <strong>
+                                        15 August 2026
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    🕐
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Time
+                                    </small>
+
+
+                                    <strong>
+                                        02:00 PM – 02:30 PM
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="appointment-detail">
+
+
+                                <span>
+                                    💻
+                                </span>
+
+
+                                <div>
+
+                                    <small>
+                                        Mode
+                                    </small>
+
+
+                                    <strong>
+                                        Online
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-purpose">
+
+
+                            <span>
+                                Purpose
+                            </span>
+
+
+                            <p>
+                                Discussion about AI project
+                            </p>
+
+
+                        </div>
+
+
+
+                        <div class="appointment-actions">
+
+
+                            <button
+                                class="secondary-btn"
+                                data-action="view">
+
+                                View Details
+
+                            </button>
+
+
+                            <button
+                                class="cancel-btn"
+                                data-action="cancel">
+
+                                Cancel
+
+                            </button>
+
+
+                        </div>
+
+
+                    </article>
+
+
+
+                    <!-- EMPTY APPOINTMENT -->
+
+                    <div
+                        class="empty-appointments"
+                        id="emptyAppointments">
+
+
+                        <div class="empty-icon">
+                            📅
+                        </div>
+
+
+                        <h3>
+                            No Appointments Found
+                        </h3>
+
+
+                        <p>
+
+                            You don't have any appointments
+                            in this category.
+
+                        </p>
+
+
+                        <button
+                            class="primary-btn"
+                            id="emptyBookBtn">
+
+                            Book an Appointment
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 BOOK APPOINTMENT SECTION
+                 ===================================================== -->
+
+            <section
+                class="page-section"
+                id="bookAppointmentSection">
+
+
+                <div class="page-header">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            APPOINTMENT
+                        </p>
+
+
+                        <h2>
+                            Book Appointment
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="back-button"
+                        id="bookBackBtn">
+
+                        ← Back
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- FORM CARD -->
+
+                <div class="form-card">
+
+
+                    <div class="form-intro">
+
+
+                        <div class="form-icon">
+                            📝
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Schedule a Faculty Meeting
+                            </h3>
+
+
+                            <p>
+
+                                Fill in the details below to
+                                send an appointment request.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- APPOINTMENT FORM -->
+
+                    <form
+                        id="appointmentForm">
+
+
+                        <!-- FACULTY -->
+
+                        <div class="form-group">
+
+
+                            <label for="facultySelect">
+                                Select Faculty
+                            </label>
+
+
+                            <select
+                                id="facultySelect"
+                                required>
+
+
+                                <option value="">
+                                    Select a faculty member
+                                </option>
+
+
+                                <option value="Dr. Ananya Sharma">
+                                    Dr. Ananya Sharma - CSE
+                                </option>
+
+
+                                <option value="Prof. Vikram Mehta">
+                                    Prof. Vikram Mehta - AI
+                                </option>
+
+
+                                <option value="Dr. Rahul Verma">
+                                    Dr. Rahul Verma - ECE
+                                </option>
+
+
+                                <option value="Dr. Priya Kapoor">
+                                    Dr. Priya Kapoor - ME
+                                </option>
+
+
+                                <option value="Prof. Arjun Singh">
+                                    Prof. Arjun Singh - IT
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <!-- DATE + TIME -->
+
+                        <div class="form-row">
+
+
+                            <div class="form-group">
+
+
+                                <label for="appointmentDate">
+                                    Appointment Date
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="appointmentDate"
+                                    required>
+
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+
+                                <label for="appointmentTime">
+                                    Preferred Time
+                                </label>
+
+
+                                <select
+                                    id="appointmentTime"
+                                    required>
+
+
+                                    <option value="">
+                                        Select time
+                                    </option>
+
+
+                                    <option>
+                                        10:00 AM – 10:30 AM
+                                    </option>
+
+
+                                    <option>
+                                        10:30 AM – 11:00 AM
+                                    </option>
+
+
+                                    <option>
+                                        11:00 AM – 11:30 AM
+                                    </option>
+
+
+                                    <option>
+                                        11:30 AM – 12:00 PM
+                                    </option>
+
+
+                                    <option>
+                                        12:00 PM – 12:30 PM
+                                    </option>
+
+
+                                    <option>
+                                        02:00 PM – 02:30 PM
+                                    </option>
+
+
+                                    <option>
+                                        02:30 PM – 03:00 PM
+                                    </option>
+
+
+                                    <option>
+                                        03:00 PM – 03:30 PM
+                                    </option>
+
+
+                                </select>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- MEETING MODE -->
+
+                        <div class="form-group">
+
+
+                            <label>
+                                Meeting Mode
+                            </label>
+
+
+                            <div class="mode-options">
+
+
+                                <label
+                                    class="mode-option">
+
+
+                                    <input
+                                        type="radio"
+                                        name="meetingMode"
+                                        value="Online"
+                                        checked>
+
+
+                                    <span>
+                                        💻 Online
+                                    </span>
+
+
+                                </label>
+
+
+
+                                <label
+                                    class="mode-option">
+
+
+                                    <input
+                                        type="radio"
+                                        name="meetingMode"
+                                        value="Offline">
+
+
+                                    <span>
+                                        🏫 Offline
+                                    </span>
+
+
+                                </label>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- PURPOSE -->
+
+                        <div class="form-group">
+
+
+                            <label for="appointmentPurpose">
+                                Purpose / Reason
+                            </label>
+
+
+                            <textarea
+                                id="appointmentPurpose"
+                                rows="4"
+                                placeholder="Enter the reason for your appointment..."
+                                required></textarea>
+
+
+                        </div>
+
+
+
+                        <!-- SUBMIT -->
+
+                        <button
+                            type="submit"
+                            class="primary-btn submit-appointment-btn">
+
+                            📅
+                            Book Appointment
+
+                        </button>
+
+
+                    </form>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 FIND FACULTY SECTION
+                 ===================================================== -->
+
+            <section
+                class="page-section"
+                id="findFacultySection">
+
+
+                <div class="page-header">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            FACULTY DIRECTORY
+                        </p>
+
+
+                        <h2>
+                            Find Faculty
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="back-button"
+                        id="facultyBackBtn">
+
+                        ← Back
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- SEARCH BOX -->
+
+                <div class="faculty-search-box">
+
+
+                    <div class="search-wrapper">
+
+
+                        <span class="search-symbol">
+                            🔍
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="facultySearchInput"
+                            placeholder="Search by faculty name, department or short name..."
+                            autocomplete="off">
+
+
+                        <button
+                            type="button"
+                            id="clearSearchBtn"
+                            class="clear-search-btn">
+
+                            ×
+
+                        </button>
+
+
+                    </div>
+
+
+                    <p class="search-description">
+
+                        You can search using faculty name,
+                        department, subject or short name.
+
+                    </p>
+
+
+                    <!-- SEARCH TAGS -->
+
+                    <div class="search-tags">
+
+
+                        <button
+                            class="search-tag"
+                            data-search="CSE">
+
+                            CSE
+
+                        </button>
+
+
+                        <button
+                            class="search-tag"
+                            data-search="AI">
+
+                            AI
+
+                        </button>
+
+
+                        <button
+                            class="search-tag"
+                            data-search="ECE">
+
+                            ECE
+
+                        </button>
+
+
+                        <button
+                            class="search-tag"
+                            data-search="ME">
+
+                            ME
+
+                        </button>
+
+
+                        <button
+                            class="search-tag"
+                            data-search="IT">
+
+                            IT
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- FACULTY RESULTS -->
+
+                <div
+                    class="faculty-results"
+                    id="facultyResults">
+
+
+                    <!-- FACULTY 1 -->
+
+                    <article
+                        class="faculty-result-card"
+                        data-name="Dr. Ananya Sharma"
+                        data-department="Computer Science and Engineering"
+                        data-short="Ananya Sharma CSE CS Computer Science">
+
+
+                        <div
+                            class="faculty-result-avatar pink">
+
+                            AS
+
+                        </div>
+
+
+                        <div
+                            class="faculty-result-info">
+
+
+                            <h3>
+                                Dr. Ananya Sharma
+                            </h3>
+
+
+                            <p>
+                                Computer Science &
+                                Engineering
+                            </p>
+
+
+                            <span class="faculty-short">
+                                CSE
+                            </span>
+
+
+                            <span
+                                class="faculty-availability">
+
+                                🟢 Available:
+                                10:00 AM – 12:00 PM
+
+                            </span>
+
+
+                        </div>
+
+
+                        <button
+                            class="faculty-book-btn"
+                            data-faculty="Dr. Ananya Sharma">
+
+                            Book
+
+                        </button>
+
+
+                    </article>
+
+
+
+                    <!-- FACULTY 2 -->
+
+                    <article
+                        class="faculty-result-card"
+                        data-name="Prof. Vikram Mehta"
+                        data-department="Artificial Intelligence"
+                        data-short="Vikram Mehta AI Artificial Intelligence">
+
+
+                        <div
+                            class="faculty-result-avatar blue">
+
+                            VM
+
+                        </div>
+
+
+                        <div
+                            class="faculty-result-info">
+
+
+                            <h3>
+                                Prof. Vikram Mehta
+                            </h3>
+
+
+                            <p>
+                                Artificial Intelligence
+                            </p>
+
+
+                            <span class="faculty-short">
+                                AI
+                            </span>
+
+
+                            <span
+                                class="faculty-availability">
+
+                                🟢 Available:
+                                11:00 AM – 1:00 PM
+
+                            </span>
+
+
+                        </div>
+
+
+                        <button
+                            class="faculty-book-btn"
+                            data-faculty="Prof. Vikram Mehta">
+
+                            Book
+
+                        </button>
+
+
+                    </article>
+
+
+
+                    <!-- FACULTY 3 -->
+
+                    <article
+                        class="faculty-result-card"
+                        data-name="Dr. Rahul Verma"
+                        data-department="Electronics and Communication Engineering"
+                        data-short="Rahul Verma ECE EC Electronics Communication">
+
+
+                        <div
+                            class="faculty-result-avatar green">
+
+                            RV
+
+                        </div>
+
+
+                        <div
+                            class="faculty-result-info">
+
+
+                            <h3>
+                                Dr. Rahul Verma
+                            </h3>
+
+
+                            <p>
+                                Electronics &
+                                Communication Engineering
+                            </p>
+
+
+                            <span class="faculty-short">
+                                ECE
+                            </span>
+
+
+                            <span
+                                class="faculty-availability">
+
+                                🟢 Available:
+                                10:30 AM – 12:30 PM
+
+                            </span>
+
+
+                        </div>
+
+
+                        <button
+                            class="faculty-book-btn"
+                            data-faculty="Dr. Rahul Verma">
+
+                            Book
+
+                        </button>
+
+
+                    </article>
+
+
+
+                    <!-- FACULTY 4 -->
+
+                    <article
+                        class="faculty-result-card"
+                        data-name="Dr. Priya Kapoor"
+                        data-department="Mechanical Engineering"
+                        data-short="Priya Kapoor ME Mechanical Mechanical Engineering">
+
+
+                        <div
+                            class="faculty-result-avatar orange">
+
+                            PK
+
+                        </div>
+
+
+                        <div
+                            class="faculty-result-info">
+
+
+                            <h3>
+                                Dr. Priya Kapoor
+                            </h3>
+
+
+                            <p>
+                                Mechanical Engineering
+                            </p>
+
+
+                            <span class="faculty-short">
+                                ME
+                            </span>
+
+
+                            <span
+                                class="faculty-availability">
+
+                                🟢 Available:
+                                12:00 PM – 2:00 PM
+
+                            </span>
+
+
+                        </div>
+
+
+                        <button
+                            class="faculty-book-btn"
+                            data-faculty="Dr. Priya Kapoor">
+
+                            Book
+
+                        </button>
+
+
+                    </article>
+
+
+
+                    <!-- FACULTY 5 -->
+
+                    <article
+                        class="faculty-result-card"
+                        data-name="Prof. Arjun Singh"
+                        data-department="Information Technology"
+                        data-short="Arjun Singh IT Information Technology">
+
+
+                        <div
+                            class="faculty-result-avatar purple">
+
+                            AS
+
+                        </div>
+
+
+                        <div
+                            class="faculty-result-info">
+
+
+                            <h3>
+                                Prof. Arjun Singh
+                            </h3>
+
+
+                            <p>
+                                Information Technology
+                            </p>
+
+
+                            <span class="faculty-short">
+                                IT
+                            </span>
+
+
+                            <span
+                                class="faculty-availability">
+
+                                🟢 Available:
+                                2:00 PM – 4:00 PM
+
+                            </span>
+
+
+                        </div>
+
+
+                        <button
+                            class="faculty-book-btn"
+                            data-faculty="Prof. Arjun Singh">
+
+                            Book
+
+                        </button>
+
+
+                    </article>
+
+
+                </div>
+
+
+
+                <!-- NO RESULT -->
+
+                <div
+                    class="no-search-result"
+                    id="noSearchResult">
+
+
+                    <div class="no-search-icon">
+                        🔍
+                    </div>
+
+
+                    <h3>
+                        No Faculty Found
+                    </h3>
+
+
+                    <p>
+
+                        Try searching with another faculty name,
+                        department or short name.
+
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================================
+                 STUDENT PROFILE SECTION
+                 ===================================================== -->
+
+            <section
+                class="page-section profile-section"
+                id="profileSection">
+
+
+                <!-- PROFILE HEADER -->
+
+                <div class="profile-page-header">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            STUDENT PROFILE
+                        </p>
+
+
+                        <h2>
+                            My Profile
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="back-button"
+                        id="profileBackBtn">
+
+                        ← Dashboard
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- PROFILE CARD -->
+
+                <div class="profile-card">
+
+
+                    <!-- PROFILE TOP -->
+
+                    <div class="profile-card-top">
+
+
+                        <div class="large-profile-avatar">
+
+                            SP
+
+                        </div>
+
+
+                        <div
+                            class="profile-name-area">
+
+
+                            <h2>
+                                Shambhavi Sahu
+                            </h2>
+
+
+                            <p>
+                                Student
+                            </p>
+
+
+                            <span
+                                class="profile-active">
+
+                                ● Active Student
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PROFILE INFORMATION -->
+
+                    <div
+                        class="profile-information">
+
+
+                        <h3>
+                            Academic Information
+                        </h3>
+
+
+                        <!-- NAME -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                👤
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Full Name
+                                </span>
+
+
+                                <strong>
+                                    Shambhavi Sahu
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- COURSE -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                🎓
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Course
+                                </span>
+
+
+                                <strong>
+                                    Bachelor of Technology (B.Tech)
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- BRANCH -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                💻
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Branch
+                                </span>
+
+
+                                <strong>
+                                    Computer Science & Engineering
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- ADMISSION NUMBER -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                🪪
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Admission Number
+                                </span>
+
+
+                                <strong>
+                                    2025CSE0001
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- UNIVERSITY ROLL NUMBER -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                🔢
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    University Roll Number
+                                </span>
+
+
+                                <strong>
+                                    2512345678
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- COLLEGE -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                🏫
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    College
+                                </span>
+
+
+                                <strong>
+                                    ABES Engineering College
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- SEMESTER -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                📚
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Current Semester
+                                </span>
+
+
+                                <strong>
+                                    3rd Semester
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- SECTION -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                👥
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    Section
+                                </span>
+
+
+                                <strong>
+                                    CSE-29
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="profile-info-row">
+
+
+                            <div class="profile-info-icon">
+                                ✉️
+                            </div>
+
+
+                            <div
+                                class="profile-info-content">
+
+
+                                <span>
+                                    College Email
+                                </span>
+
+
+                                <strong>
+                                    student@abes.ac.in
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =====================================================
+             BOTTOM NAVIGATION
+             ===================================================== -->
+
+        <nav class="bottom-navigation">
+
+
+            <!-- HOME -->
+
+            <button
+                class="bottom-nav-item active"
+                data-page="home">
+
+
+                <span>
+                    🏠
+                </span>
+
+
+                <small>
+                    Home
+                </small>
+
+
+            </button>
+
+
+
+            <!-- APPOINTMENTS -->
+
+            <button
+                class="bottom-nav-item"
+                data-page="appointments">
+
+
+                <span>
+                    📅
+                </span>
+
+
+                <small>
+                    Appointments
+                </small>
+
+
+            </button>
+
+
+
+            <!-- BOOK -->
+
+            <button
+                class="bottom-nav-item"
+                data-page="book">
+
+
+                <span>
+                    📝
+                </span>
+
+
+                <small>
+                    Book
+                </small>
+
+
+            </button>
+
+
+
+            <!-- FACULTY -->
+
+            <button
+                class="bottom-nav-item"
+                data-page="faculty">
+
+
+                <span>
+                    🔍
+                </span>
+
+
+                <small>
+                    Faculty
+                </small>
+
+
+            </button>
+
+
+        </nav>
+
+
+
+        <!-- =====================================================
+             TOAST
+             ===================================================== -->
+
+        <div
+            class="toast"
+            id="toast">
+        </div>
+
+
+    </div>
+
+
+    <script src="student.js"></script>
+
+
+</body>
+
+</html>
