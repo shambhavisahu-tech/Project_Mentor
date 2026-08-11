@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mentora — Faculty Login</title>
+<meta name="description" content="Log in to Mentora with your faculty unique ID to manage office hours, appointments, and connect with your students." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   MENTORA — Faculty Login
+   ========================================================= */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+img, svg { display: block; max-width: 100%; }
+button, input { font: inherit; color: inherit; }
+a { color: inherit; }
+
+/* ---------- Variables ---------- */
+:root {
+  --soft-blush: #E8C5C8;
+  --old-rose: #A86670;
+  --old-rose-dark: #8E525C;
+  --pale-slate: #B8C4CF;
+  --cool-steel: #718090;
+  --cool-steel-dark: #55636F;
+  --taupe-grey: #9B918D;
+  --ivory: #FAF8F6;
+  --dark-text: #293B55;
+  --text-muted: #6E7A8A;
+  --white: #FFFFFF;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --max-width: 460px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  background: var(--ivory);
+  color: var(--dark-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--old-rose);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin-bottom: 28px;
+  animation: fadeDown 0.6s var(--ease) both;
+}
+
+.brand__logo { margin-bottom: 4px; }
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.24em;
+  color: var(--old-rose);
+  text-indent: 0.24em;
+}
+
+.brand__tagline {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--cool-steel-dark);
+  text-transform: uppercase;
+}
+
+/* ---------- Welcome ---------- */
+.welcome {
+  text-align: center;
+  margin-bottom: 26px;
+  animation: fadeUp 0.6s var(--ease) 0.08s both;
+}
+
+.welcome__heading {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(26px, 6vw, 32px);
+  color: var(--dark-text);
+  margin-bottom: 12px;
+}
+
+.welcome__subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 370px;
+  margin: 0 auto;
+}
+
+/* ---------- Role Toggle ---------- */
+.role-toggle {
+  display: flex;
+  background: var(--white);
+  border: 1.5px solid rgba(155, 145, 141, 0.28);
+  border-radius: 999px;
+  padding: 5px;
+  margin-bottom: 18px;
+  animation: fadeUp 0.6s var(--ease) 0.16s both;
+}
+
+.role-toggle__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  cursor: pointer;
+}
+
+.role-toggle__btn svg { flex-shrink: 0; }
+
+.role-toggle__btn.is-active {
+  background: var(--pale-slate);
+  color: var(--cool-steel-dark);
+  box-shadow: 0 4px 12px rgba(113, 128, 144, 0.24);
+}
+
+/* ---------- Form ---------- */
+.login-form {
+  animation: fadeUp 0.6s var(--ease) 0.24s both;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border: 1.5px solid rgba(155, 145, 141, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.field:focus-within {
+  border-color: var(--cool-steel);
+  box-shadow: 0 0 0 3px rgba(113, 128, 144, 0.14);
+}
+
+.field__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.field__text { flex: 1; min-width: 0; }
+
+.field__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 2px;
+}
+
+.field__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14.5px;
+  color: var(--dark-text);
+  background: transparent;
+}
+
+.field__input::placeholder { color: #A9AFBA; }
+
+.field__error {
+  font-size: 12.5px;
+  color: var(--old-rose-dark);
+  margin: -8px 0 14px 4px;
+  min-height: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--old-rose), var(--old-rose-dark));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15.5px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 20px rgba(142, 82, 92, 0.3);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(142, 82, 92, 0.36); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+.submit-btn__arrow { transition: transform 0.2s var(--ease); }
+.submit-btn:hover .submit-btn__arrow { transform: translateX(3px); }
+
+/* ---------- Helper text / need help ---------- */
+.helper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  text-align: center;
+}
+
+.need-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin-top: 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--old-rose);
+}
+
+.need-help__chevron {
+  transition: transform 0.25s var(--ease);
+}
+
+.need-help.is-open .need-help__chevron {
+  transform: rotate(180deg);
+}
+
+.need-help__panel {
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  transition: max-height 0.3s var(--ease);
+}
+
+.need-help__panel.is-open {
+  max-height: 80px;
+}
+
+.need-help__panel p {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 10px 12px 0;
+}
+
+/* ---------- Illustration ---------- */
+.illustration {
+  margin-top: auto;
+  padding-top: 32px;
+  display: flex;
+  justify-content: center;
+  animation: fadeUp 0.7s var(--ease) 0.32s both;
+}
+
+.illustration__svg { width: 100%; max-width: 400px; height: auto; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 16px);
+  background: var(--dark-text);
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  z-index: 20;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .brand, .welcome, .role-toggle, .login-form, .illustration { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .submit-btn, .role-toggle__btn, .field { transition: none !important; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 360px) {
+  .page { padding: 32px 18px 32px; }
+  .brand__name { font-size: 24px; }
+  .welcome__heading { font-size: 25px; }
+  .role-toggle__btn { font-size: 13.5px; padding: 11px 8px; }
+}
+
+@media (min-width: 768px) {
+  .page { padding: 64px 24px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ BRAND ============ -->
+  <header class="brand">
+    <div class="brand__logo" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="21" stroke="var(--old-rose)" stroke-width="2"/>
+        <text x="24" y="32.5" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="600" fill="var(--old-rose)">M</text>
+      </svg>
+    </div>
+    <span class="brand__name">MENTORA</span>
+    <span class="brand__tagline">Faculty Appointments &amp; Office Hours</span>
+  </header>
+
+  <!-- ============ WELCOME ============ -->
+  <section class="welcome">
+    <h1 class="welcome__heading">Welcome back <span aria-hidden="true">👋</span></h1>
+    <p class="welcome__subtitle">Manage your office hours, appointments, and connect with your students.</p>
+  </section>
+
+  <!-- ============ ROLE TOGGLE ============ -->
+  <div class="role-toggle" role="tablist" aria-label="Choose account type">
+    <button
+      type="button"
+      class="role-toggle__btn"
+      id="studentTab"
+      role="tab"
+      aria-selected="false"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 9 L12 5 L21 9 L12 13 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M7 11 V15.5 C7 17 9.2 18.2 12 18.2 C14.8 18.2 17 17 17 15.5 V11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Student
+    </button>
+    <button
+      type="button"
+      class="role-toggle__btn is-active"
+      id="facultyTab"
+      role="tab"
+      aria-selected="true"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M5 19.5 C5 15.5 8 13 12 13 C16 13 19 15.5 19 19.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      Faculty
+    </button>
+  </div>
+
+  <!-- ============ LOGIN FORM ============ -->
+  <form class="login-form" id="facultyLoginForm" novalidate>
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="3.6" stroke="var(--cool-steel-dark)" stroke-width="1.8"/>
+          <path d="M5 19.5 C5 15.5 8 13 12 13 C16 13 19 15.5 19 19.5" stroke="var(--cool-steel-dark)" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="field__text">
+        <label class="field__label" for="facultyId">Faculty Unique ID</label>
+        <input
+          class="field__input"
+          type="text"
+          id="facultyId"
+          name="facultyId"
+          placeholder="Enter your faculty ID"
+          autocomplete="off"
+          inputmode="text"
+          aria-describedby="facultyError"
+          required
+        />
+      </span>
+    </div>
+    <p class="field__error" id="facultyError" role="alert"></p>
+
+    <button type="submit" class="submit-btn" id="continueBtn">
+      Continue
+      <svg class="submit-btn__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 12 H20 M14 6 L20 12 L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </form>
+
+  <p class="helper">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3 L20 6.5 V11 C20 16 16.6 20 12 21.5 C7.4 20 4 16 4 11 V6.5 Z" stroke="var(--old-rose)" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M9 12 L11 14 L15.5 9.5" stroke="var(--old-rose)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Use your registered faculty unique ID.
+  </p>
+
+  <button type="button" class="need-help" id="needHelpToggle" aria-expanded="false" aria-controls="needHelpPanel">
+    Need help?
+    <svg class="need-help__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9 L12 15 L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="need-help__panel" id="needHelpPanel">
+    <p>Contact your department administrator if you don't have your faculty unique ID.</p>
+  </div>
+
+  <!-- ============ ILLUSTRATION ============ -->
+  <div class="illustration" aria-hidden="true">
+    <svg class="illustration__svg" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- dotted lines from students up to a connecting point -->
+      <line x1="140" y1="205" x2="200" y2="175" stroke="var(--old-rose)" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <line x1="200" y1="175" x2="260" y2="205" stroke="var(--old-rose)" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <line x1="200" y1="175" x2="200" y2="200" stroke="var(--old-rose)" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <circle cx="200" cy="172" r="4" fill="var(--old-rose)"/>
+
+      <!-- three student silhouettes from behind -->
+      <g fill="var(--cool-steel)" opacity="0.55">
+        <circle cx="140" cy="196" r="10"/>
+        <path d="M124 232 C124 214 131 206 140 206 C149 206 156 214 156 232 Z"/>
+        <circle cx="200" cy="196" r="10"/>
+        <path d="M184 232 C184 214 191 206 200 206 C209 206 216 214 216 232 Z"/>
+        <circle cx="260" cy="196" r="10"/>
+        <path d="M244 232 C244 214 251 206 260 206 C269 206 276 214 276 232 Z"/>
+      </g>
+
+      <!-- faculty member at desk with laptop (left-center) -->
+      <g stroke="var(--old-rose)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="42" y="150" width="86" height="7" rx="2"/>
+        <line x1="50" y1="157" x2="50" y2="178"/>
+        <line x1="120" y1="157" x2="120" y2="178"/>
+        <path d="M60 150 V130 C60 116 70 107 85 107 C100 107 110 116 110 130 V150 Z" fill="var(--soft-blush)" opacity="0.4"/>
+        <circle cx="85" cy="88" r="15"/>
+        <path d="M71 88 C71 74 77 66 85 66 C93 66 99 74 99 82" fill="none"/>
+        <circle cx="79" cy="90" r="1.6" fill="var(--old-rose)" stroke="none"/>
+        <circle cx="91" cy="90" r="1.6" fill="var(--old-rose)" stroke="none"/>
+        <path d="M53 150 C55 138 68 132 85 132 C102 132 115 138 117 150"/>
+        <rect x="66" y="140" width="38" height="7" rx="1.5" fill="var(--soft-blush)" stroke="none"/>
+      </g>
+
+      <!-- calendar with checkmark -->
+      <g>
+        <rect x="150" y="60" width="60" height="58" rx="8" fill="#FFFFFF" stroke="var(--old-rose)" stroke-width="1.6"/>
+        <line x1="150" y1="76" x2="210" y2="76" stroke="var(--old-rose)" stroke-width="1.6"/>
+        <path d="M162 54 C162 62 166 66 166 66 C166 66 170 62 170 54" stroke="var(--old-rose)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M190 54 C190 62 194 66 194 66 C194 66 198 62 198 54" stroke="var(--old-rose)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <circle cx="180" cy="97" r="14" fill="var(--soft-blush)"/>
+        <path d="M173 97 L178 102 L188 91" stroke="var(--old-rose-dark)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- office hours clock -->
+      <g>
+        <text x="292" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="700" letter-spacing="1" fill="var(--cool-steel-dark)">OFFICE HOURS</text>
+        <circle cx="292" cy="92" r="26" fill="#FFFFFF" stroke="var(--pale-slate)" stroke-width="1.8"/>
+        <line x1="292" y1="92" x2="292" y2="76" stroke="var(--cool-steel-dark)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="292" y1="92" x2="303" y2="92" stroke="var(--cool-steel-dark)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <!-- plant -->
+      <g stroke="var(--pale-slate)" stroke-width="1.6" fill="none" stroke-linecap="round">
+        <path d="M225 145 C220 130 224 118 232 112"/>
+        <path d="M225 145 C230 132 228 120 220 112"/>
+        <path d="M225 145 C225 128 225 116 225 108"/>
+        <path d="M212 150 L238 150 L235 165 L215 165 Z" fill="var(--pale-slate)" opacity="0.3"/>
+      </g>
+
+      <!-- chat bubble with group icon -->
+      <g>
+        <rect x="340" y="128" width="44" height="34" rx="10" fill="var(--soft-blush)" opacity="0.5"/>
+        <path d="M352 162 L346 170 L352 162 Z" fill="var(--soft-blush)" opacity="0.5"/>
+        <circle cx="355" cy="143" r="4" fill="var(--old-rose)"/>
+        <circle cx="365" cy="143" r="4" fill="var(--old-rose)"/>
+        <circle cx="375" cy="143" r="4" fill="var(--old-rose)"/>
+        <path d="M349 152 C349 148 352 146 355 146 C358 146 361 148 361 152" stroke="var(--old-rose)" stroke-width="1.4" fill="none"/>
+        <path d="M359 152 C359 148 362 146 365 146 C368 146 371 148 371 152" stroke="var(--old-rose)" stroke-width="1.4" fill="none"/>
+        <path d="M369 152 C369 148 372 146 375 146 C378 146 381 148 381 152" stroke="var(--old-rose)" stroke-width="1.4" fill="none"/>
+      </g>
+    </svg>
+  </div>
+
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   MENTORA — Faculty Login Interaction
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const studentTab = document.getElementById('studentTab');
+  const facultyTab = document.getElementById('facultyTab');
+  const form = document.getElementById('facultyLoginForm');
+  const input = document.getElementById('facultyId');
+  const errorEl = document.getElementById('facultyError');
+  const continueBtn = document.getElementById('continueBtn');
+  const needHelpToggle = document.getElementById('needHelpToggle');
+  const needHelpPanel = document.getElementById('needHelpPanel');
+  const toast = document.getElementById('toast');
+
+  // Switching to the Student tab takes the user to the student login flow.
+  // Update this path if the student page moves.
+  studentTab.addEventListener('click', () => {
+    window.location.href = 'student-login.html';
+  });
+
+  facultyTab.addEventListener('click', () => {
+    facultyTab.classList.add('is-active');
+    facultyTab.setAttribute('aria-selected', 'true');
+    studentTab.classList.remove('is-active');
+    studentTab.setAttribute('aria-selected', 'false');
+  });
+
+  needHelpToggle.addEventListener('click', () => {
+    const isOpen = needHelpPanel.classList.toggle('is-open');
+    needHelpToggle.classList.toggle('is-open', isOpen);
+    needHelpToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+
+    if (!value) {
+      errorEl.textContent = 'Please enter your faculty unique ID to continue.';
+      input.focus();
+      return;
+    }
+
+    errorEl.textContent = '';
+    continueBtn.disabled = true;
+
+    // Placeholder for the real authentication call.
+    // Replace this block with an actual API request when the backend is ready.
+    showToast(`Welcome back! Redirecting…`);
+
+    window.setTimeout(() => {
+      // Update this destination once the faculty dashboard route exists.
+      window.location.href = 'faculty-dashboard.html';
+    }, 900);
+  });
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => {
+      toast.classList.remove('is-visible');
+    }, 2600);
+  }
+
+});
+</script>
+
+</body>
+</html>
