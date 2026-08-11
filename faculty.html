@@ -1,0 +1,938 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mentora | Faculty Dashboard</title>
+
+    <link rel="stylesheet" href="faculty/faculty.css">
+    <link rel="stylesheet" href="faculty/student.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+
+            <div class="logo">
+                <div class="logo-icon">M</div>
+                <div>
+                    <h2>Mentora</h2>
+                    <span>Faculty Portal</span>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Schedule</a>
+                <a href="#">Requests</a>
+                <a href="#">Profile</a>
+            </div>
+
+            <div class="notification">
+                🔔
+                <span></span>
+            </div>
+
+        </nav>
+
+
+        <!-- MAIN CONTENT -->
+        <main>
+
+            <!-- WELCOME SECTION -->
+            <section class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <p class="small-heading">FACULTY DASHBOARD</p>
+
+                    <h1>
+                        Good afternoon, Ms. Navya 👋
+                    </h1>
+
+                    <p>
+                        Here's your schedule for today.
+                    </p>
+
+                </div>
+
+                <div class="date-box">
+
+                    <span>📅</span>
+
+                    <strong>Monday</strong>
+
+                    <small>10 August 2026</small>
+
+                </div>
+
+            </section>
+            <!-- EDIT PROFILE MODAL -->
+
+<div class="profile-modal" id="profileModal">
+
+    <div class="profile-modal-box">
+
+        <div class="modal-header">
+            <div>
+                <p class="small-heading">PROFILE SETTINGS</p>
+                <h2>Edit Profile</h2>
+            </div>
+
+            <button class="close-modal" id="closeProfileModal">
+                ✕
+            </button>
+        </div>
+
+
+        <form id="profileForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="editName"
+                        value="Ms. Navya Srivastava"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input
+                        type="email"
+                        id="editEmail"
+                        value="navya@college.edu"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <input
+                        type="text"
+                        id="editDepartment"
+                        value="Computer Science & Engineering"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Faculty ID</label>
+                    <input
+                        type="text"
+                        id="editFacultyId"
+                        value="FAC-2026-001"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Office Room</label>
+                    <input
+                        type="text"
+                        id="editRoom"
+                        value="Room 304"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Office Hours</label>
+                    <input
+                        type="text"
+                        id="editHours"
+                        value="10:00 AM – 12:00 PM"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelProfileEdit"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-profile-btn"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+            <!-- DASHBOARD CARDS -->
+            <section class="dashboard-grid">
+
+
+                <!-- TODAY'S SCHEDULE -->
+                <div class="card schedule-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Today's Schedule</h2>
+                            <p>3 appointments today</p>
+                        </div>
+
+                        <span class="card-icon">📅</span>
+
+                    </div>
+
+
+                    <!-- APPOINTMENT 1 -->
+                    <div class="appointment">
+
+                        <div class="time">
+                            <strong>10:00</strong>
+                            <span>AM</span>
+                        </div>
+
+                        <div class="student-info">
+                            <strong>Ananya Iyer</strong>
+                            <span>Data Structures & Algorithms</span>
+                        </div>
+
+                        <span class="status confirmed">
+                            ● Confirmed
+                        </span>
+
+                    </div>
+
+
+                    <!-- APPOINTMENT 2 -->
+                    <div class="appointment">
+
+                        <div class="time">
+                            <strong>11:00</strong>
+                            <span>AM</span>
+                        </div>
+
+                        <div class="student-info">
+                            <strong>Rohan Mehta</strong>
+                            <span>Database Systems</span>
+                        </div>
+
+                        <span class="status pending">
+                            ● Pending
+                        </span>
+
+                    </div>
+
+
+                    <!-- APPOINTMENT 3 -->
+                    <div class="appointment">
+
+                        <div class="time">
+                            <strong>2:00</strong>
+                            <span>PM</span>
+                        </div>
+
+                        <div class="student-info">
+                            <strong>Kavya Rao</strong>
+                            <span>Digital Signal Processing</span>
+                        </div>
+
+                        <span class="status completed">
+                            ● Completed
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OFFICE HOURS -->
+                <div class="card office-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Office Hours</h2>
+                            <p>Your availability</p>
+                        </div>
+
+                        <span class="card-icon">⏰</span>
+
+                    </div>
+
+                    <div class="office-time">
+                        <strong>10:00 AM – 12:00 PM</strong>
+                        <span>In Person / Room 304</span>
+                    </div>
+
+                    <div class="office-time">
+                        <strong>2:00 PM – 4:00 PM</strong>
+                        <span>Online / Microsoft Teams</span>
+                    </div>
+
+                    <button class="primary-btn">
+                        Manage Office Hours
+                    </button>
+
+                </div>
+
+
+                <!-- PENDING REQUESTS -->
+                <div class="card request-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Pending Requests</h2>
+                            <p>2 appointment requests</p>
+                        </div>
+
+                        <span class="card-icon">📩</span>
+
+                    </div>
+
+                    <div class="request">
+
+                        <div class="avatar">S</div>
+
+                        <div>
+                            <strong>Siddharth Verma</strong>
+                            <span>Computer Networks</span>
+                            <small>Requested today, 9:15 AM</small>
+                        </div>
+
+                    </div>
+
+                    <div class="request">
+
+                        <div class="avatar">N</div>
+
+                        <div>
+                            <strong>Neha Kapoor</strong>
+                            <span>Operations Research</span>
+                            <small>Requested today, 8:50 AM</small>
+                        </div>
+
+                    </div>
+
+                    <button class="primary-btn">
+                        View Requests
+                    </button>
+
+                </div>
+
+            </section>
+<!-- REQUESTS SECTION -->
+
+<section class="requests-page" id="requestsPage">
+
+    <div class="page-heading">
+        <div>
+            <p class="small-heading">FACULTY PORTAL</p>
+            <h1>Appointment Requests</h1>
+            <p>Review and manage student meeting requests.</p>
+        </div>
+
+        <div class="request-count">
+            <strong>2</strong>
+            <span>Pending Requests</span>
+        </div>
+    </div>
+
+
+    <!-- REQUEST 1 -->
+
+    <div class="request-full-card">
+
+        <div class="request-top">
+
+            <div class="student-profile">
+
+                <div class="large-avatar">
+                    A
+                </div>
+
+                <div>
+                    <h2>Ananya Iyer</h2>
+                    <p>2nd Year • CSE</p>
+                </div>
+
+            </div>
+
+            <span class="priority high">
+                🔴 High Priority
+            </span>
+
+        </div>
+
+
+        <div class="request-details">
+
+            <div>
+                <span>📅 Requested Date</span>
+                <strong>12 August 2026</strong>
+            </div>
+
+            <div>
+                <span>⏰ Preferred Time</span>
+                <strong>2:00 PM – 2:30 PM</strong>
+            </div>
+
+            <div>
+                <span>📚 Subject</span>
+                <strong>Data Structures</strong>
+            </div>
+
+        </div>
+
+
+        <div class="reason-box">
+
+            <h3>Reason for Meeting</h3>
+
+            <p>
+                I need clarification regarding the upcoming DSA
+                assignment and would like to discuss my approach.
+            </p>
+
+        </div>
+
+
+        <div class="request-actions">
+
+            <button class="accept-btn">
+                ✓ Accept
+            </button>
+
+            <button class="reschedule-btn">
+                ↻ Reschedule
+            </button>
+
+            <button class="reject-btn">
+                ✕ Reject
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- REQUEST 2 -->
+
+    <div class="request-full-card">
+
+        <div class="request-top">
+
+            <div class="student-profile">
+
+                <div class="large-avatar">
+                    R
+                </div>
+
+                <div>
+                    <h2>Rohan Mehta</h2>
+                    <p>3rd Year • CSE</p>
+                </div>
+
+            </div>
+
+            <span class="priority medium">
+                🟡 Medium Priority
+            </span>
+
+        </div>
+
+
+        <div class="request-details">
+
+            <div>
+                <span>📅 Requested Date</span>
+                <strong>13 August 2026</strong>
+            </div>
+
+            <div>
+                <span>⏰ Preferred Time</span>
+                <strong>11:00 AM – 11:30 AM</strong>
+            </div>
+
+            <div>
+                <span>📚 Subject</span>
+                <strong>Database Systems</strong>
+            </div>
+
+        </div>
+
+
+        <div class="reason-box">
+
+            <h3>Reason for Meeting</h3>
+
+            <p>
+                I would like to discuss my project topic and get
+                feedback before the final submission.
+            </p>
+
+        </div>
+
+
+        <div class="request-actions">
+
+            <button class="accept-btn">
+                ✓ Accept
+            </button>
+
+            <button class="reschedule-btn">
+                ↻ Reschedule
+            </button>
+
+            <button class="reject-btn">
+                ✕ Reject
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- SCHEDULE SECTION -->
+
+<section class="schedule-page" id="schedulePage">
+
+    <div class="page-heading">
+        <div>
+            <p class="small-heading">FACULTY PORTAL</p>
+            <h1>My Schedule</h1>
+            <p>Manage your appointments and meetings.</p>
+        </div>
+
+        <button class="primary-btn">
+            + Add Availability
+        </button>
+    </div>
+
+
+    <!-- WEEK DAYS -->
+
+    <div class="week-days">
+
+        <div class="day active-day">
+            <span>MON</span>
+            <strong>10</strong>
+            <small>Aug</small>
+        </div>
+
+        <div class="day">
+            <span>TUE</span>
+            <strong>11</strong>
+            <small>Aug</small>
+        </div>
+
+        <div class="day">
+            <span>WED</span>
+            <strong>12</strong>
+            <small>Aug</small>
+        </div>
+
+        <div class="day">
+            <span>THU</span>
+            <strong>13</strong>
+            <small>Aug</small>
+        </div>
+
+        <div class="day">
+            <span>FRI</span>
+            <strong>14</strong>
+            <small>Aug</small>
+        </div>
+
+    </div>
+
+
+    <!-- SCHEDULE LIST -->
+
+    <div class="schedule-list">
+
+        <!-- MEETING 1 -->
+
+        <div class="schedule-item">
+
+            <div class="schedule-time">
+                <strong>10:00</strong>
+                <span>AM</span>
+            </div>
+
+            <div class="schedule-line"></div>
+
+            <div class="schedule-info">
+
+                <div class="schedule-student">
+                    <div class="schedule-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <h3>Ananya Iyer</h3>
+                        <p>Data Structures & Algorithms</p>
+                    </div>
+                </div>
+
+                <div class="schedule-meta">
+                    <span>📍 Room 304</span>
+                    <span>🟢 Confirmed</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEETING 2 -->
+
+        <div class="schedule-item">
+
+            <div class="schedule-time">
+                <strong>11:00</strong>
+                <span>AM</span>
+            </div>
+
+            <div class="schedule-line"></div>
+
+            <div class="schedule-info">
+
+                <div class="schedule-student">
+
+                    <div class="schedule-avatar">
+                        R
+                    </div>
+
+                    <div>
+                        <h3>Rohan Mehta</h3>
+                        <p>Database Systems</p>
+                    </div>
+
+                </div>
+
+                <div class="schedule-meta">
+                    <span>💻 Online</span>
+                    <span class="schedule-pending">
+                        🟡 Pending
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEETING 3 -->
+
+        <div class="schedule-item">
+
+            <div class="schedule-time">
+                <strong>2:00</strong>
+                <span>PM</span>
+            </div>
+
+            <div class="schedule-line"></div>
+
+            <div class="schedule-info">
+
+                <div class="schedule-student">
+
+                    <div class="schedule-avatar">
+                        K
+                    </div>
+
+                    <div>
+                        <h3>Kavya Rao</h3>
+                        <p>Project Discussion</p>
+                    </div>
+
+                </div>
+
+                <div class="schedule-meta">
+                    <span>📍 Room 304</span>
+                    <span>🟢 Confirmed</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEETING 4 -->
+
+        <div class="schedule-item">
+
+            <div class="schedule-time">
+                <strong>3:30</strong>
+                <span>PM</span>
+            </div>
+
+            <div class="schedule-line"></div>
+
+            <div class="schedule-info">
+
+                <div class="schedule-student">
+
+                    <div class="schedule-avatar">
+                        N
+                    </div>
+
+                    <div>
+                        <h3>Neha Kapoor</h3>
+                        <p>Career Guidance</p>
+                    </div>
+
+                </div>
+
+                <div class="schedule-meta">
+                    <span>💻 Online</span>
+                    <span>🟢 Confirmed</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- PROFILE SECTION -->
+
+<section class="profile-page" id="profilePage">
+
+    <div class="page-heading">
+        <div>
+            <p class="small-heading">FACULTY PORTAL</p>
+            <h1>My Profile</h1>
+            <p>Manage your faculty information and availability.</p>
+        </div>
+
+        <button class="primary-btn edit-profile-btn" id="editProfileBtn">
+    ✏️ Edit Profile
+</button>
+    </div>
+
+
+    <!-- PROFILE HEADER -->
+
+    <div class="profile-header-card">
+
+        <div class="profile-main">
+
+            <div class="profile-avatar">
+                N
+            </div>
+
+            <div class="profile-name">
+
+                <h2>Ms. Navya Srivastava</h2>
+
+                <p>
+                    Assistant Professor • Computer Science & Engineering
+                </p>
+
+                <span class="faculty-badge">
+                    ● Faculty
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE INFORMATION -->
+
+    <div class="profile-grid">
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="profile-card">
+
+            <div class="profile-card-title">
+                <span>👤</span>
+
+                <div>
+                    <h2>Personal Information</h2>
+                    <p>Your basic faculty details</p>
+                </div>
+            </div>
+
+
+            <div class="profile-info">
+
+                <div>
+                    <span>Full Name</span>
+                    <strong>Ms. Navya Srivastava</strong>
+                </div>
+
+                <div>
+                    <span>Email Address</span>
+                    <strong>navya@college.edu</strong>
+                </div>
+
+                <div>
+                    <span>Department</span>
+                    <strong>Computer Science & Engineering</strong>
+                </div>
+
+                <div>
+                    <span>Faculty ID</span>
+                    <strong>FAC-2026-001</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OFFICE INFORMATION -->
+
+        <div class="profile-card">
+
+            <div class="profile-card-title">
+                <span>🏫</span>
+
+                <div>
+                    <h2>Office Information</h2>
+                    <p>Where students can meet you</p>
+                </div>
+            </div>
+
+
+            <div class="profile-info">
+
+                <div>
+                    <span>Office Room</span>
+                    <strong>Room 304</strong>
+                </div>
+
+                <div>
+                    <span>Office Hours</span>
+                    <strong>10:00 AM – 12:00 PM</strong>
+                </div>
+
+                <div>
+                    <span>Evening Hours</span>
+                    <strong>2:00 PM – 4:00 PM</strong>
+                </div>
+
+                <div>
+                    <span>Meeting Mode</span>
+                    <strong>In Person / Online</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACCOUNT SETTINGS -->
+
+    <div class="profile-card settings-card">
+
+        <div class="profile-card-title">
+
+            <span>⚙️</span>
+
+            <div>
+                <h2>Account & Availability</h2>
+                <p>Manage how students can reach you.</p>
+            </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+                <strong>Accept appointment requests</strong>
+                <p>Allow students to request meetings with you.</p>
+            </div>
+
+            <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+                <strong>Online meetings</strong>
+                <p>Allow students to request online meetings.</p>
+            </div>
+
+            <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+
+        </div>
+
+    </div>
+
+</section>
+        </main>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <footer class="bottom-nav">
+
+            <a href="#" class="bottom-active">
+                🏠
+                <span>Home</span>
+            </a>
+
+            <a href="#">
+                📅
+                <span>Schedule</span>
+            </a>
+
+            <a href="#">
+                👥
+                <span>Requests</span>
+            </a>
+
+            <a href="#">
+                👤
+                <span>Profile</span>
+            </a>
+
+        </footer>
+
+    </div>
+    <script src="js/script.js"></script>
+
+</body>
+</html>  
