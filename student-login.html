@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mentora — Student Login</title>
+<meta name="description" content="Log in to Mentora with your admission number to connect with your faculty, book appointments, and manage your schedule." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   MENTORA — Student Login
+   ========================================================= */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+img, svg { display: block; max-width: 100%; }
+button, input { font: inherit; color: inherit; }
+a { color: inherit; }
+
+/* ---------- Variables ---------- */
+:root {
+  --soft-blush: #E8C5C8;
+  --old-rose: #A86670;
+  --old-rose-dark: #8E525C;
+  --pale-slate: #B8C4CF;
+  --cool-steel: #718090;
+  --cool-steel-dark: #55636F;
+  --taupe-grey: #9B918D;
+  --ivory: #FAF8F6;
+  --dark-text: #293B55;
+  --text-muted: #6E7A8A;
+  --white: #FFFFFF;
+  --card-border-student: #DCA9AE;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --max-width: 460px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  background: var(--ivory);
+  color: var(--dark-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--old-rose);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin-bottom: 28px;
+  animation: fadeDown 0.6s var(--ease) both;
+}
+
+.brand__logo { margin-bottom: 4px; }
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.24em;
+  color: var(--old-rose);
+  text-indent: 0.24em;
+}
+
+.brand__tagline {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--cool-steel-dark);
+  text-transform: uppercase;
+}
+
+/* ---------- Welcome ---------- */
+.welcome {
+  text-align: center;
+  margin-bottom: 26px;
+  animation: fadeUp 0.6s var(--ease) 0.08s both;
+}
+
+.welcome__heading {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(26px, 6vw, 32px);
+  color: var(--dark-text);
+  margin-bottom: 12px;
+}
+
+.welcome__subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* ---------- Role Toggle ---------- */
+.role-toggle {
+  display: flex;
+  background: var(--white);
+  border: 1.5px solid rgba(155, 145, 141, 0.28);
+  border-radius: 999px;
+  padding: 5px;
+  margin-bottom: 18px;
+  animation: fadeUp 0.6s var(--ease) 0.16s both;
+}
+
+.role-toggle__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  cursor: pointer;
+}
+
+.role-toggle__btn svg { flex-shrink: 0; }
+
+.role-toggle__btn.is-active {
+  background: var(--soft-blush);
+  color: var(--old-rose-dark);
+  box-shadow: 0 4px 12px rgba(168, 102, 112, 0.22);
+}
+
+.role-toggle__btn.is-active .role-toggle__icon--faculty { color: var(--cool-steel-dark); }
+
+/* ---------- Form ---------- */
+.login-form {
+  animation: fadeUp 0.6s var(--ease) 0.24s both;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border: 1.5px solid rgba(155, 145, 141, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.field:focus-within {
+  border-color: var(--old-rose);
+  box-shadow: 0 0 0 3px rgba(168, 102, 112, 0.12);
+}
+
+.field__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.field__text { flex: 1; min-width: 0; }
+
+.field__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 2px;
+}
+
+.field__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14.5px;
+  color: var(--dark-text);
+  background: transparent;
+}
+
+.field__input::placeholder { color: #A9AFBA; }
+
+.field__error {
+  font-size: 12.5px;
+  color: var(--old-rose-dark);
+  margin: -8px 0 14px 4px;
+  min-height: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--old-rose), var(--old-rose-dark));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15.5px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 20px rgba(142, 82, 92, 0.3);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(142, 82, 92, 0.36); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+.submit-btn__arrow { transition: transform 0.2s var(--ease); }
+.submit-btn:hover .submit-btn__arrow { transform: translateX(3px); }
+
+/* ---------- Helper text / need help ---------- */
+.helper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  text-align: center;
+}
+
+.need-help {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--old-rose);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Illustration ---------- */
+.illustration {
+  margin-top: auto;
+  padding-top: 32px;
+  display: flex;
+  justify-content: center;
+  animation: fadeUp 0.7s var(--ease) 0.32s both;
+}
+
+.illustration__svg { width: 100%; max-width: 380px; height: auto; }
+
+/* ---------- Toast (lightweight feedback, no backend yet) ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 16px);
+  background: var(--dark-text);
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  z-index: 20;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .brand, .welcome, .role-toggle, .login-form, .illustration { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .submit-btn, .role-toggle__btn, .field { transition: none !important; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 360px) {
+  .page { padding: 32px 18px 32px; }
+  .brand__name { font-size: 24px; }
+  .welcome__heading { font-size: 25px; }
+  .role-toggle__btn { font-size: 13.5px; padding: 11px 8px; }
+}
+
+@media (min-width: 768px) {
+  .page { padding: 64px 24px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ BRAND ============ -->
+  <header class="brand">
+    <div class="brand__logo" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="21" stroke="var(--old-rose)" stroke-width="2"/>
+        <text x="24" y="32.5" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="22" font-weight="600" fill="var(--old-rose)">M</text>
+      </svg>
+    </div>
+    <span class="brand__name">MENTORA</span>
+    <span class="brand__tagline">Faculty Appointments &amp; Office Hours</span>
+  </header>
+
+  <!-- ============ WELCOME ============ -->
+  <section class="welcome">
+    <h1 class="welcome__heading">Welcome back <span aria-hidden="true">👋</span></h1>
+    <p class="welcome__subtitle">Log in to connect with your faculty, book appointments, and manage your schedule.</p>
+  </section>
+
+  <!-- ============ ROLE TOGGLE ============ -->
+  <div class="role-toggle" role="tablist" aria-label="Choose account type">
+    <button
+      type="button"
+      class="role-toggle__btn is-active"
+      id="studentTab"
+      role="tab"
+      aria-selected="true"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 9 L12 5 L21 9 L12 13 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M7 11 V15.5 C7 17 9.2 18.2 12 18.2 C14.8 18.2 17 17 17 15.5 V11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Student
+    </button>
+    <button
+      type="button"
+      class="role-toggle__btn"
+      id="facultyTab"
+      role="tab"
+      aria-selected="false"
+    >
+      <svg class="role-toggle__icon--faculty" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M5 19.5 C5 15.5 8 13 12 13 C16 13 19 15.5 19 19.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      Faculty
+    </button>
+  </div>
+
+  <!-- ============ LOGIN FORM ============ -->
+  <form class="login-form" id="studentLoginForm" novalidate>
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="3.6" stroke="var(--cool-steel-dark)" stroke-width="1.8"/>
+          <path d="M5 19.5 C5 15.5 8 13 12 13 C16 13 19 15.5 19 19.5" stroke="var(--cool-steel-dark)" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="field__text">
+        <label class="field__label" for="admissionNumber">Admission Number</label>
+        <input
+          class="field__input"
+          type="text"
+          id="admissionNumber"
+          name="admissionNumber"
+          placeholder="Enter your admission number"
+          autocomplete="off"
+          inputmode="text"
+          aria-describedby="admissionError"
+          required
+        />
+      </span>
+    </div>
+    <p class="field__error" id="admissionError" role="alert"></p>
+
+    <button type="submit" class="submit-btn" id="continueBtn">
+      Continue
+      <svg class="submit-btn__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 12 H20 M14 6 L20 12 L14 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </form>
+
+  <p class="helper">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3 L20 6.5 V11 C20 16 16.6 20 12 21.5 C7.4 20 4 16 4 11 V6.5 Z" stroke="var(--old-rose)" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M9 12 L11 14 L15.5 9.5" stroke="var(--old-rose)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Use your registered college admission number.
+  </p>
+
+  <a href="#" class="need-help" id="needHelpLink">Need help?</a>
+
+  <!-- ============ ILLUSTRATION ============ -->
+  <div class="illustration" aria-hidden="true">
+    <svg class="illustration__svg" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- dotted connectors -->
+      <line x1="120" y1="140" x2="165" y2="120" stroke="var(--old-rose)" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <line x1="235" y1="120" x2="270" y2="150" stroke="var(--old-rose)" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round"/>
+
+      <!-- Student at desk with laptop (left) -->
+      <g stroke="var(--old-rose)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+        <rect x="55" y="168" width="70" height="6" rx="2"/>
+        <line x1="62" y1="174" x2="62" y2="196"/>
+        <line x1="118" y1="174" x2="118" y2="196"/>
+        <path d="M75 168 V150 C75 138 84 130 96 130 C108 130 117 138 117 150 V168 Z" fill="var(--soft-blush)" opacity="0.4"/>
+        <circle cx="96" cy="112" r="14"/>
+        <path d="M84 112 C84 100 90 93 96 93 C102 93 108 100 108 108" fill="none"/>
+        <path d="M68 168 C70 158 82 154 96 154 C110 154 122 158 124 168" />
+        <rect x="80" y="160" width="32" height="6" rx="1.5" fill="var(--soft-blush)" stroke="none"/>
+      </g>
+
+      <!-- Central calendar + appointment card -->
+      <g>
+        <rect x="168" y="70" width="64" height="52" rx="8" fill="#FFFFFF" stroke="var(--old-rose)" stroke-width="1.6"/>
+        <line x1="168" y1="84" x2="232" y2="84" stroke="var(--old-rose)" stroke-width="1.6"/>
+        <line x1="182" y1="64" x2="182" y2="76" stroke="var(--old-rose)" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="218" y1="64" x2="218" y2="76" stroke="var(--old-rose)" stroke-width="1.6" stroke-linecap="round"/>
+        <g fill="var(--soft-blush)">
+          <rect x="178" y="92" width="8" height="8" rx="1.5"/>
+          <rect x="192" y="92" width="8" height="8" rx="1.5"/>
+          <rect x="206" y="92" width="8" height="8" rx="1.5"/>
+          <rect x="178" y="104" width="8" height="8" rx="1.5"/>
+          <rect x="192" y="104" width="8" height="8" rx="1.5"/>
+        </g>
+
+        <rect x="150" y="132" width="100" height="46" rx="10" fill="#FFFFFF" stroke="var(--soft-blush)" stroke-width="1.6"/>
+        <circle cx="168" cy="150" r="6" fill="var(--soft-blush)"/>
+        <line x1="182" y1="145" x2="232" y2="145" stroke="var(--cool-steel)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="182" y1="154" x2="216" y2="154" stroke="var(--pale-slate)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+
+      <!-- Faculty standing (right) -->
+      <g stroke="var(--pale-slate)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+        <path d="M268 196 C268 165 282 148 300 148 C318 148 332 165 332 196 Z" fill="var(--pale-slate)" opacity="0.35"/>
+        <circle cx="300" cy="122" r="15"/>
+        <path d="M287 122 C287 109 293 101 300 101 C307 101 313 109 313 116" />
+        <path d="M285 148 L293 158 L300 150 L307 158 L315 148" />
+        <path d="M282 175 C288 168 296 165 300 165" stroke="var(--cool-steel)"/>
+      </g>
+    </svg>
+  </div>
+
+</div>
+
+<!-- Lightweight toast for inline feedback (no backend yet) -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   MENTORA — Student Login Interaction
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const facultyTab = document.getElementById('facultyTab');
+  const studentTab = document.getElementById('studentTab');
+  const form = document.getElementById('studentLoginForm');
+  const input = document.getElementById('admissionNumber');
+  const errorEl = document.getElementById('admissionError');
+  const continueBtn = document.getElementById('continueBtn');
+  const needHelpLink = document.getElementById('needHelpLink');
+  const toast = document.getElementById('toast');
+
+  // Switching to the Faculty tab takes the user to the faculty login flow.
+  // Update this path if the faculty page moves.
+  facultyTab.addEventListener('click', () => {
+    window.location.href = 'faculty-login.html';
+  });
+
+  // Student tab is already active on this page; clicking it just keeps focus here.
+  studentTab.addEventListener('click', () => {
+    studentTab.classList.add('is-active');
+    studentTab.setAttribute('aria-selected', 'true');
+    facultyTab.classList.remove('is-active');
+    facultyTab.setAttribute('aria-selected', 'false');
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+
+    if (!value) {
+      errorEl.textContent = 'Please enter your admission number to continue.';
+      input.focus();
+      return;
+    }
+
+    errorEl.textContent = '';
+    continueBtn.disabled = true;
+
+    // Placeholder for the real authentication call.
+    // Replace this block with an actual API request when the backend is ready.
+    showToast(`Welcome, ${value}! Redirecting…`);
+
+    window.setTimeout(() => {
+      // Update this destination once the student dashboard route exists.
+      window.location.href = 'student-dashboard.html';
+    }, 900);
+  });
+
+  needHelpLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    showToast('Contact your faculty office for admission number support.');
+  });
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => {
+      toast.classList.remove('is-visible');
+    }, 2600);
+  }
+
+});
+</script>
+
+</body>
+</html>
